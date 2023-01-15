@@ -1,0 +1,27 @@
+<h1>{{title}}</h1>
+{{#if courses}}
+{{!-- с помощью #each мы итерируем массив courses который передали 
+в routes/courses.js в поле courses: courses
+а сам массив с курсами мы получили из метода getAll класса Course в models/course.js--}}
+  {{#each courses}}
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{img}}" alt="{{title}}">
+          </div>
+          <div class="card-content">
+            <span class="card-title">{{title}}</span>
+            <p class="price">{{price}}</p>
+          </div>
+          <div class="card-action">
+            <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
+            <a href="/courses/{{id}}/edit?allow=true">Редактировать курс</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+{{else}}
+  <p>Курсов пока нет</p>
+{{/if}}
