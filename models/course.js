@@ -37,8 +37,8 @@ class Course {
     })
   }
 
-  static getAll() {
-    return new Promise((resolve, reject) => {
+  static getAll() { // достаем все данные из data/courses.json
+    return new Promise((resolve, reject) => { // возвращаем промис
       fs.readFile(path.join(__dirname, '..', 'data', 'courses.json'),
       'utf-8',
       (err, content) => {

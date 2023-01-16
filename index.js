@@ -1,8 +1,10 @@
 const express = require('express'); // подключаем библиотеку express
+const path = require('path');
 const exphbs = require('express-handlebars'); // подключаем express-handlebars
-const homeRoute = require('./routes/home');
+const homeRoute = require('./routes/home'); // регистрируем роуты из папки routes
 const coursesRoute = require('./routes/courses');
 const addRoute = require('./routes/add');
+const cardRoute = require('./routes/card');
 
 const app = express(); // создаем сервер
 // аналог http.createServer(function (req, res))
@@ -20,7 +22,7 @@ app.set('view engine', 'hbs'); // устанавливаем в настройк
 // html-страниц будет использоваться движок hbs
 app.set('views', 'views'); // указываем в поле views папку, где будут храниться шаблоны
 
-app.use(express.static('public')); // к серверу подключаем папку public, в которой будут
+app.use(express.static(path.join(__dirname, 'public'))); // к серверу подключаем папку public, в которой будут
 // храниться стили, клиентские скрипты и картинки
 
 app.use(express.urlencoded({extended: true})); //
@@ -29,6 +31,7 @@ app.use(express.urlencoded({extended: true})); //
 app.use('/', homeRoute);
 app.use('/courses', coursesRoute);
 app.use('/add', addRoute);
+app.use('/card', cardRoute);
 
 const PORT = process.env.PORT || 3000;
 
